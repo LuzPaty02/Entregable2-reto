@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import Authentication from '././views/authentication';
 import SignUp from './views/singup';
+import { getAuth } from 'firebase/auth';
 
 export default function App() {
   return (

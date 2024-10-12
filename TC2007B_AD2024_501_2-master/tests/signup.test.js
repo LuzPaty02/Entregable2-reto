@@ -1,12 +1,18 @@
+import '@testing-library/jest-native/extend-expect';
 import React from 'react';
 import { render, fireEvent, waitFor } from '@testing-library/react-native';
-import SignUp from './signup.test';
-import { AuthContext } from '././authentication';
+import  SignUp  from '../views/singup';
+import { AuthContext } from '../views/authentication';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+
 
 // Mock the Firebase auth function
 jest.mock('firebase/auth', () => ({
+  getAuth: jest.fn(() => ({
+    currentUser: { uid: 'test-uid', email: 'test@example.com' }
+  })),
   createUserWithEmailAndPassword: jest.fn(),
+  onAuthStateChanged: jest.fn((auth, callback) => callback(null)),
 }));
 
 describe('SignUp Component', () => {
@@ -24,8 +30,8 @@ describe('SignUp Component', () => {
       </AuthContext.Provider>
     );
 
-    const emailInput = getByPlaceholderText('Email');
-    const passwordInput = getByPlaceholderText('Password');
+    const emailInput = getByPlaceholderText('Correo');
+    const passwordInput = getByPlaceholderText('Contraseña');
     const signUpButton = getByText('Sign Up');
 
     // Simulate user input

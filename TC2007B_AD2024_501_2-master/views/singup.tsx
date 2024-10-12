@@ -2,9 +2,11 @@ import React, { useState, useContext } from 'react';
 import { View, TextInput, Button, Text, StyleSheet } from 'react-native';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { AuthContext } from '././authentication';
+import { getAuth } from 'firebase/auth';
 
 const SignUp = () => {
-  const { auth } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+  const auth = authContext ? authContext.auth : getAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -27,12 +29,12 @@ const SignUp = () => {
       <TextInput
         style={styles.inputField}
         keyboardType="email-address" 
-        placeholder="Email"
+        placeholder="Correo"
         onChangeText={setEmail}
       />
       <TextInput
         style={styles.inputField}
-        placeholder="Password"
+        placeholder="Contraseña"
         secureTextEntry={true}
         onChangeText={setPassword}
       />
