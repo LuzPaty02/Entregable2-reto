@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent, waitFor } from '@testing-library/react-native';
-import SignUp from './SignUp';
+import SignUp from './signup.test';
 import { AuthContext } from '././authentication';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 
